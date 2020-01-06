@@ -1,0 +1,17 @@
+{
+  "extends": "../../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "xplatSampleElectronRouting5",
+      "camelCase"
+    ],
+    "component-selector": [
+      true,
+      "element",
+      "xplat-sample-electron-routing5",
+      "kebab-case"
+    ]
+  }
+}
