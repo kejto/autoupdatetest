@@ -21,8 +21,13 @@
             "polyfills": "apps/portal/src/polyfills.ts",
             "tsConfig": "apps/portal/tsconfig.app.json",
             "aot": false,
-            "assets": ["apps/portal/src/favicon.ico", "apps/portal/src/assets"],
-            "styles": ["apps/portal/src/styles.scss"],
+            "assets": [
+              "apps/portal/src/favicon.ico",
+              "apps/portal/src/assets"
+            ],
+            "styles": [
+              "apps/portal/src/styles.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -81,7 +86,10 @@
               "apps/portal/tsconfig.app.json",
               "apps/portal/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/portal/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/portal/**"
+            ]
           }
         },
         "test": {
@@ -115,15 +123,293 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/portal-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/portal-e2e/**"]
+            "tsConfig": [
+              "apps/portal-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/portal-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "libs": {
+      "root": "libs",
+      "sourceRoot": "libs",
+      "projectType": "library",
+      "prefix": "xplat-sample-electron-routing5",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "testing/test.libs.ts",
+            "tsConfig": "testing/tsconfig.libs.spec.json",
+            "karmaConfig": "testing/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "testing/tsconfig.libs.json",
+              "testing/tsconfig.libs.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "xplat": {
+      "root": "xplat",
+      "sourceRoot": "xplat",
+      "projectType": "library",
+      "prefix": "xplat-sample-electron-routing5",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "testing/test.xplat.ts",
+            "tsConfig": "testing/tsconfig.xplat.spec.json",
+            "karmaConfig": "testing/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "testing/tsconfig.xplat.json",
+              "testing/tsconfig.xplat.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "web-portal": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/web-portal",
+      "sourceRoot": "apps/web-portal/src",
+      "prefix": "xplat-sample-electron-routing5",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/web-portal",
+            "index": "apps/web-portal/src/index.html",
+            "main": "apps/web-portal/src/main.ts",
+            "polyfills": "apps/web-portal/src/polyfills.ts",
+            "tsConfig": "apps/web-portal/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/web-portal/src/favicon.ico",
+              "apps/web-portal/src/assets"
+            ],
+            "styles": [
+              "xplat/web/scss/_index.scss",
+              "apps/web-portal/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/web-portal/src/environments/environment.ts",
+                  "with": "apps/web-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "web-portal:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "web-portal:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "web-portal:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/web-portal/tsconfig.app.json",
+              "apps/web-portal/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/web-portal/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/web-portal/jest.config.js",
+            "tsConfig": "apps/web-portal/tsconfig.spec.json",
+            "setupFile": "apps/web-portal/src/test-setup.ts"
+          }
+        }
+      }
+    },
+    "web-portal-e2e": {
+      "root": "apps/web-portal-e2e",
+      "sourceRoot": "apps/web-portal-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/web-portal-e2e/cypress.json",
+            "tsConfig": "apps/web-portal-e2e/tsconfig.e2e.json",
+            "devServerTarget": "web-portal:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "web-portal:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/web-portal-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/web-portal-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "electron-portal": {
+      "projectType": "application",
+      "schematics": {
+        "@nrwl/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "apps/web-portal",
+      "sourceRoot": "apps/web-portal/src",
+      "prefix": "xplat-sample-electron-routing5",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/electron-portal",
+            "index": "apps/web-portal/src/index.html",
+            "main": "apps/web-portal/src/main.electron.ts",
+            "polyfills": "apps/web-portal/src/polyfills.ts",
+            "tsConfig": "apps/web-portal/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "apps/web-portal/src/favicon.ico",
+              "apps/web-portal/src/assets",
+              {
+                "glob": "**/*",
+                "input": "apps/electron-portal/src/",
+                "ignore": [
+                  "**/*.ts"
+                ],
+                "output": ""
+              }
+            ],
+            "styles": [
+              "xplat/web/scss/_index.scss",
+              "apps/web-portal/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/web-portal/src/environments/environment.ts",
+                  "with": "apps/web-portal/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "electron-portal:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "electron-portal:build:production"
+            }
           }
         }
       }
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/angular"
+    "defaultCollection": "@nstudio/xplat"
   },
   "schematics": {
     "@nrwl/angular:application": {

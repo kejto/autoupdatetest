@@ -13,6 +13,21 @@
     },
     "portal": {
       "tags": []
+    },
+    "libs": {
+      "tags": []
+    },
+    "xplat": {
+      "tags": []
+    },
+    "web-portal-e2e": {
+      "tags": []
+    },
+    "web-portal": {
+      "tags": []
+    },
+    "electron-portal": {
+      "tags": []
     }
   }
 }

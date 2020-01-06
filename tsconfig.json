@@ -15,7 +15,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@xplat-sample-electron-routing5/*": ["libs/*"],
+      "@xplat-sample-electron-routing5/electron": ["xplat/electron/index.ts"],
+      "@xplat-sample-electron-routing5/electron/*": ["xplat/electron/*"],
+      "@xplat-sample-electron-routing5/web": ["xplat/web/index.ts"],
+      "@xplat-sample-electron-routing5/web/*": ["xplat/web/*"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

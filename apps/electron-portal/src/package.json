@@ -1,0 +1,53 @@
+{
+  "name": "portal",
+  "version": "1.0.1",
+  "description": "Portal description.",
+  "main": "index.js",
+  "author": {
+    "name": "Your name",
+    "email": "name@company.com"
+  },
+  "homepage": "https://nstudio.io/xplat",
+  "repository": {
+    "url": "https://github.com/nstudio/xplat"
+  },
+  "dependencies": {
+    "electron-updater": "^4.2.0",
+    "electron-log": "^4.0.2"
+  },
+  "license": "MIT",
+  "build": {
+    "appId": "com.company.portal",
+    "productName": "Portal",
+    "copyright": "Copyright © 2018-2019 xplat-sample-electron-routing5",
+    "asar": false,
+    "npmRebuild": false,
+    "directories": {
+      "buildResources": "icons",
+      "output": "../electronportal-packages"
+    },
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "icon": "icon.png"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "icon.ico"
+    },
+    "linux": {
+      "icon": "icon.png",
+      "target": [
+        "AppImage",
+        "deb",
+        "tar.gz"
+      ],
+      "synopsis": "Portal",
+      "category": "Development"
+    },
+    "nsis": {
+      "createDesktopShortcut": "always",
+      "installerIcon": "icon.ico",
+      "artifactName": "Portal-Setup-${version}.${ext}"
+    }
+  }
+}
