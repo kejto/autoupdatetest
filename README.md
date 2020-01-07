@@ -52,7 +52,7 @@ add to package.json in electron app:
 
 helper: npx asar extract app.asar d:/testasar
 run powershell as admin and from github
-[Environment]::SetEnvironmentVariable("GH_TOKEN","0bfbd66c0c4d777660177a2c0f5b21c7695fe74a","User")
+[Environment]::SetEnvironmentVariable("GH_TOKEN","token here","User")
 npm i -D electron@7.1.2
 npm i -D  electron-updater@latest
 
